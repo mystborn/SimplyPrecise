@@ -1,0 +1,11 @@
+<p>User {{ user.username }} has requested to create a new account on <a href="www.simplyprecise.com">www.simplyprecise.com</a><p>
+
+<p>If you wish to allow them to do so, you can click the following link:</p>
+
+<p><a href="{{ url_for('cms.verify_account', token=token, _external=True) }}">Click Here!</a></p>
+
+<p>Otherwise, ignore this message.</p>
+
+<p>Sincerely,</p>
+
+<p>Simply Precise</p>

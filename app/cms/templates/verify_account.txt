@@ -1,0 +1,11 @@
+User {{ user.username }} has requested to create a new account on www.simplyprecise.com
+
+If you wish to allow them to do so, you can click the following link:
+
+{{ url_for('cms.verify_account', token=token, _external=True) }}
+
+Otherwise, ignore this message.
+
+Sincerely,
+
+Simply Precise
