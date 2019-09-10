@@ -2,7 +2,7 @@ from flask import current_app, Markup, abort
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
-from markdown import Markdown
+from markdown import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
 from flask_sqlalchemy import BaseQuery
 from sqlalchemy_searchable import SearchQueryMixin, make_searchable
@@ -29,7 +29,8 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    posts = db.Relationship('Post', backref='author', lazy='dynamic')
+    email = db.Column(db.UnicodeText)
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.Text)
     level = db.Column(db.Enum(UserLevel))
     is_verified = db.Column(db.Boolean)
@@ -45,7 +46,7 @@ class User(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    user = User.query.gget(int(id))
+    user = User.query.get(int(id))
     if user != None and user.is_verified:
         return user
     return None
@@ -90,7 +91,7 @@ class Post(db.Model):
     html_body = db.Column(db.UnicodeText)
     markdown_body = db.Column(db.UnicodeText)
     date_published = db.Column(db.DateTime, index=True)
-    date_edited = db.Column(db.db.DateTime)
+    date_edited = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     tags = db.relationship('Tag', secondary=tag_to_post, backref=db.backref('posts', lazy='dynamic'), passive_deletes=True)
     search_vector = db.Column(TSVectorType('title', 'summary', 'markdown_body', weights={'title': 'A', 'summary': 'B', 'markdown_body': 'C'}))
@@ -103,5 +104,5 @@ class Post(db.Model):
         self.slug = re.sub('[^\\w]+', '-', self.title.lower())
 
         hilite = CodeHiliteExtension(linenums=False, css_class='highlight')
-        markdown_text = markdown(self.markdown_body, extensions[hilite, 'fenced_code'])
+        markdown_text = markdown(self.markdown_body, extensions=[hilite, 'fenced_code'])
         self.html_body = Markup(markdown_text)

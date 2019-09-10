@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<h1>{{ post.title }}</h1>
+<span>
+    {% if post.author %}By: {{ post.author.username }}{% endif %} |
+    {% if post.date_published %}{{ moment(post.date_published).format('LL') }}{% endif %}
+    {% if post.date_edited and post.date_published != post.date_edited %} (edited {{ moment(post.date_edited).format('LL') }}){% endif %}
+    {% if current_user == post.author %}
+    <span class="pl-3"><a href="{{ url_for('cms.blog_edit', id=post.id) }}" class="btn btn-secondary">Edit</a></span>
+    {% endif %}
+</span>
+<hr>
+{{ body }}
+{% endblock %}

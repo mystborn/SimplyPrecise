@@ -1,6 +1,7 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, IntegerField, BooleanField, PasswordField, RecaptchaField
+from flask_wtf import FlaskForm, RecaptchaField
+from wtforms import StringField, TextAreaField, SubmitField, IntegerField, BooleanField, PasswordField
 from wtforms.validators import ValidationError, DataRequired, Length, Email, EqualTo
+from app.models import User, Post
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
@@ -18,7 +19,7 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
     def validate_username(self, username):
-        user = User.Query.filter_by(username=username.data).first()
+        user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Username already taken.')
 

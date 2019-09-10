@@ -15,4 +15,7 @@ class Config(object):
     MAIL_USERNAME = _config['mail'].get('username')
     MAIL_PASSWORD = _config['mail'].get('password')
     ADMINS = _config['admins']
+    RECAPTCHA_PUBLIC_KEY = _config['recaptcha']['public']
+    RECAPTCHA_PRIVATE_KEY = _config['recaptcha']['private']
+    RECAPTCHA_USE_SSL = _config['recaptcha']['use_ssl']
     POSTS_PER_PAGE = 5

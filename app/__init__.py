@@ -8,7 +8,7 @@ from sqlalchemy_searchable import make_searchable
 from flask_cors import CORS
 
 import logging
-from logging.handlers import SMPTHandler, RotatingFileHandler
+from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from config import Config
 
@@ -55,10 +55,10 @@ def create_app(config_class = Config):
                         app.config['MAIL_PASSWORD'])
 
             secure = None
-            if(app.config['MAIL_USE_TLS'])
+            if app.config['MAIL_USE_TLS']:
                 secure = ()
 
-            mail_handler = SMPTHandler(
+            mail_handler = SMTPHandler(
                 mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
                 fromaddr='no-reply@' + app.config['MAIL_SERVER'],
                 toaddrs=app.config['ADMINS'], subject='Precisamento Failure',

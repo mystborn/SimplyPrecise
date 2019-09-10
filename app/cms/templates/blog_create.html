@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<h1 class="pb-3">Blog Post</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.title.label(class="control-label", for="code-blog-title") }}<br>
+        {{ form.title(class="form-control", id="code-blog-title") }}
+        {% for error in form.title.errors %}
+        <span class="form-error">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.body.label(class="control-label", for="code-blog-content") }}<br>
+        {{ form.body(class="form-control", id="code-blog-content", rows=10) }}
+        {% for error in form.body.errors %}
+        <span class="form-error">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.summary.label(class="control-label", for="code-blog-summary") }}<br>
+        {{ form.summary(class="form-control", id="code-blog-summary", rows=4) }}
+        {% for error in form.summary.errors %}
+        <span class="form-error">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.tags.label(class="control-label", for="code-blog-tags") }}<br>
+        {{ form.tags(class="form-control", id="code-blog-tags") }}
+        {% for error in form.tags.errors %}
+        <span class="form-error">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.submit(onclick='codeBlogOnSubmit()', class='btn btn-primary') }}
+        <a class="btn btn-danger" href="{{ url_for('main.index') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}
+
+{% block app_scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='javascript/simplemde.min.js') }}"></script>
+<script type="text/javascript">
+    var simplemde = new SimpleMDE({ autosave: { enabled: true, uniqueId: "CodeBlogId", delay: 10000 }, element: $("#code-blog-content")[0], indentWithTabs: false });
+    function codeBlogOnSubmit() {
+        simplemde.toTextArea();
+        simplemde = null;
+    }
+</script>
+{% endblock %}

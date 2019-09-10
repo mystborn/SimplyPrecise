@@ -1,0 +1,4 @@
+<h2><a class="post-list-name" href="{{ url_for(main.blog, slug=post.slug) }}">{{ post.title }}</a></h2>
+<hr>
+<span>{{ post.author.username }} - {{ moment(post.date_published).format('LL') }}{% if post.date_published != post.date_edited %} ({{ moment(post.date_edited).format('LL') }}){% endif %}</span>
+<p>{{ post.summary }}</p>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+{% if page == 1 %}
+<h1>Blog Posts</h1>
+{% else %}
+<h1>Blog Posts: Page {{ page }}</h1>
+{% endif %}
+{% for post in posts %}
+    {% include "_post.html" %}
+{% endfor %}
+{% include "_pagination.html" %}
+{% endblock %}
