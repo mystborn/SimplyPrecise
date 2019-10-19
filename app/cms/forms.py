@@ -7,7 +7,7 @@ from PIL import Image
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    body = StringField('Body', validators=[DataRequired()])
+    body = TextAreaField('Body', validators=[DataRequired()])
     tags = StringField('Tags')
     summary = TextAreaField('Summary')
     submit = SubmitField('Submit')
