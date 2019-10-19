@@ -72,17 +72,19 @@ def search():
         tag_all = False if form.tags_inclusive.data == 'Any' else True
     else:
         query = parse.unquote_plus(request.args.get('q', ''))
+        tags = parse.unquote_plus(request.args.get('t', ''))
+        tag_all = False
 
-    if query == '' and tags == '':
+    if not query and not tags:
         return render_template('new_search.html', title='Search', form=form)
     else:
         items = None
-        if query != '':
+        if query:
             items = Post.query.search(query, sort=True)
         else:
             items = Post.query
 
-        if tags != '':
+        if tags:
             tags = list(filter(None, tags.split(' ')))
             old_len = len(tags)
             tags = Tag.get_valid(tags)

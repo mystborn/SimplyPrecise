@@ -171,7 +171,7 @@ def blog_create():
 
             db.session.add(post)
             db.session.commit()
-            return redirect(url_for('main.index', slug=post.slug))
+            return redirect(url_for('main.blog', slug=post.slug))
     return render_template('blog_create.html', title='Create Blog', form=form)
 
 @bp.route('/edit', methods=['GET', 'POST'])
@@ -194,7 +194,7 @@ def blog_edit():
             fill_post_from_form(post, form)
             db.session.commit()
 
-            return redirect(url_for('main.index', slug=post.slug))
+            return redirect(url_for('main.blog', slug=post.slug))
 
     form.title.data = post.title
     form.body.data = post.markdown_body
