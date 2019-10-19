@@ -14,6 +14,7 @@ class Config(object):
     MAIL_USE_TLS = _config['mail'].get('use_tls', False)
     MAIL_USERNAME = _config['mail'].get('username')
     MAIL_PASSWORD = _config['mail'].get('password')
+    MAIL_SUPPRESS_SEND = False
     ADMINS = _config['admins']
     RECAPTCHA_PUBLIC_KEY = _config['recaptcha']['public']
     RECAPTCHA_PRIVATE_KEY = _config['recaptcha']['private']

@@ -1,4 +1,12 @@
-<h2><a class="post-list-name" href="{{ url_for(main.blog, slug=post.slug) }}">{{ post.title }}</a></h2>
-<hr>
-<span>{{ post.author.username }} - {{ moment(post.date_published).format('LL') }}{% if post.date_published != post.date_edited %} ({{ moment(post.date_edited).format('LL') }}){% endif %}</span>
-<p>{{ post.summary }}</p>
+<div class="post-result-outer mb-2">
+    <div class="post-result-inner">
+        <h2><a class="post-list-name" href="{{ url_for('main.blog', slug=post.slug) }}">{{ post.title }}</a></h2>
+        <hr>
+        <span class="font-weight-light">
+            <a href="{{ url_for('main.member', username=post.author.username) }}">
+                {% if post.author.name %} {{ post.author.name }} {% else %} {{ post.author.username }} {% endif %}
+            </a> - {{ moment(post.date_published).format('LL') }}{% if post.date_published != post.date_edited %} (Edited: {{ moment(post.date_edited).format('LL') }}){% endif %}
+        </span>
+        <p>{{ post.summary }}</p>
+    </div>
+</div>

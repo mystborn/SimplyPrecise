@@ -1,51 +1,50 @@
 $breakpoints: (
-  xs: 576px,
-  sm: 768px,
-  md: 992px,
-  lg: 1200px
+    xs: 576px,
+    sm: 768px,
+    md: 992px,
+    lg: 1200px
 );
 
 // Respond above.
 @mixin respond-above($breakpoint) {
 
-  // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
-
-    // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
-
-    // Write the media query.
-    @media (min-width: $breakpoint-value) {
-      @content;
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+  
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+    
+        // Write the media query.
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+  
+    // If the breakpoint doesn't exist in the map.
+    } @else {
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
     }
-
-  // If the breakpoint doesn't exist in the map.
-  } @else {
-
-    // Log a warning.
-    @warn 'Invalid breakpoint: #{$breakpoint}.';
-  }
 }
 
 @mixin respond-below($breakpoint) {
 
   // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+  
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+    
+        // Write the media query.
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+    
+        // If the breakpoint doesn't exist in the map.
+    } @else {
 
-    // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
-
-    // Write the media query.
-    @media (max-width: ($breakpoint-value - 1)) {
-      @content;
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
     }
-
-  // If the breakpoint doesn't exist in the map.
-  } @else {
-
-    // Log a warning.
-    @warn 'Invalid breakpoint: #{$breakpoint}.';
-  }
 }
 
 .form-error {
@@ -68,5 +67,77 @@ $breakpoints: (
 textarea.form-control, input.form-control {
     &:focus {
         color: $gray-900;
+    }
+}
+
+$outer-border-color: #97BAF6;
+
+.post-result-outer {
+    @include respond-above(sm) {
+        border-radius: 30px 20px;
+        background: $outer-border-color;
+        padding: 17px;
+    }
+}
+
+.post-result-inner {
+    @include respond-above(sm) {
+        border-radius: 10px 30px;
+        background: $white;
+        padding: 10px;
+    }
+}
+
+.about-member-outer {
+    @include respond-above(sm) {
+        border-radius: 30px 20px;
+        background: $outer-border-color;
+        padding: 17px;
+    }
+}
+
+.about-member-inner {
+    @include respond-above(sm) {
+        border-radius: 10px 30px;
+        background: $white;
+        padding: 10px;
+    }
+}
+
+.about-member-name {
+    @include respond-above(sm) {
+        border-top-left-radius: .5rem !important;
+        border-top-right-radius: .5rem !important;
+        background: $primary;
+        color: $light;
+    }
+}
+
+.about-member-name-link, .about-member-name-link:hover  {
+    @include respond-above(sm) {
+        color: $light;
+    }
+    text-decoration: none;
+}
+
+.about-member-picture-bg {
+    @include respond-above(sm) {
+        border-bottom-left-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+        background: $primary;
+        padding: 2px;
+    }
+}
+
+.about-member-picture {
+    border-radius: 3rem;
+    width: 100%;
+    height: 100%;
+}
+
+.about-profile-picture-buffer {
+    @include respond-below(sm) {
+        flex: 0 0 8.333333333%;
+        max-width: 8.333333333%;
     }
 }

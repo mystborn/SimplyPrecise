@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<h1>About</h1>
+<p>
+    Welcome to SimplyPrecise, a blogging platform for the Precisamento team and associates. You'll mostly find posts about programming and art, but members are allowed to talk about whatever they want to a certain degree. Meet the members below!
+</p>
+{% for member in members %}
+    <div class="row about-member-outer mb-2">
+        <div class="about-profile-picture-buffer"></div>
+        <div class="col-10 col-sm-2">
+            <div class="text-center about-member-name pb-1">
+                <a class="about-member-name-link" href="{{ url_for('main.member', username=member.username) }}">
+                    {%if member.name != None%}{{member.name}}{%else%}{{member.username}}{%endif%}
+                </a>
+            </div>
+            <div class="about-member-picture-bg mb-3 mb-sm-0">
+                {% if member.has_avatar %}
+                <img class="about-member-picture" src="{{ url_for('static', filename='images/avatars/{}/avatar.png'.format(member.id)) }}">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/avatars/default.svg') }}">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm about-member-inner">
+            <span>
+            {%if member.about_me == None %}
+                Nothing here yet!
+            {%else%}
+            {% autoescape false %}
+                {{ member.about_me | replace("\n", "<br>")}}
+            {% endautoescape %}
+            {%endif%}
+            </span>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

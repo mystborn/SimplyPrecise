@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1 class="text-center">Search</h1>
+{% include "_searchform.html" %}
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col">
+        <p>Could not find any results.</p>
+    </div>
+</div>
+
+{% endblock %}

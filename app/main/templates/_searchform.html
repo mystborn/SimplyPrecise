@@ -1,0 +1,40 @@
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="mx-md-auto">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-2 col-md-1">
+                <p>{{ form.query.label }}</p>
+            </div>
+            <div class="col col-md-7 col-lg-6">
+                <p>{{ form.query(style="width: 100%") }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-2 col-md-1">
+                <p>{{ form.tags.label }}</p>
+            </div>
+            <div class="col col-md-7 col-lg-6">
+                <p>{{ form.tags(style="width: 100%") }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-5 col-md-2">
+                <p>{{ form.tags_inclusive.label }}</p>
+            </div>
+            <div class="col">
+                {% for subfield in form.tags_inclusive %}
+                    {{ subfield.label }}: {{ subfield }}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 col-sm-4"></div>
+            <div class="col-8 col-sm-4">
+                {{ form.submit(class='btn btn-primary mb-3', style="width: 100%") }}
+            </div>
+        </div>
+    </div>
+</form>

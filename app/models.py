@@ -32,8 +32,10 @@ class User(UserMixin, db.Model):
     email = db.Column(db.UnicodeText)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.Text)
+    name = db.Column(db.String(128))
     level = db.Column(db.Enum(UserLevel))
     is_verified = db.Column(db.Boolean)
+    has_avatar = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -73,6 +75,17 @@ class Tag(db.Model):
                 db.session.add(tag)
             tags.append(tag)
         return list(set(tags))
+
+    @staticmethod
+    def get_valid(tags):
+        result = []
+        for tag_title in tags:
+            tag = Tag.query.filter_by(title=tag_title).first()
+            if tag == None:
+                continue
+
+            result.append(tag)
+        return list(set(result))
 
     def __repr__(self):
         return f'<Tag {self.title}>'

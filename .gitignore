@@ -3,3 +3,4 @@ __pycache__
 .sass-cache
 logs
 venv
+app/static/images/avatars/**/*.png

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<span>
+    <h1>
+        User Profile
+        {% if member.username == current_user.username %}
+        <a href="{{ url_for('cms.edit_profile') }}" class="btn btn-secondary">Edit</a>
+        {% endif %}
+    </h1>
+</span>
+<div class="row about-member-outer mb-2">
+    {% if member.about_me %}
+        <div class="about-profile-picture-buffer"></div>
+        <div class="col-10 col-sm-2">
+            <div class="text-center about-member-name pb-1">{%if member.name != None%}{{member.name}}{%else%}{{member.username}}{%endif%}</div>
+            <div class="about-member-picture-bg mb-3 mb-sm-0">
+                {% if member.has_avatar %}
+                <img class="about-member-picture" src="{{ url_for('static', filename='images/avatars/{}/avatar.png'.format(member.id)) }}">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/avatars/default.svg') }}">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm about-member-inner">
+            <span>
+            {%if member.about_me == None %}
+                Nothing here yet!
+            {%else%}
+            {% autoescape false %}
+                {{ member.about_me | replace("\n", "<br>")}}
+            {% endautoescape %}
+            {%endif%}
+            </span>
+        </div>
+    {% else %}
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="text-center about-member-name pb-1">{%if member.name != None%}{{member.name}}{%else%}{{member.username}}{%endif%}</div>
+            <div class="about-member-picture-bg mb-3">
+                <img class="rounded" src="{{ url_for('static', filename='images/avatars/default.svg') }}">
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% if page == 1 %}
+<h1>Blogs</h1>
+{% else %}
+<h1>Page {{ page }}</h1>
+{% endif %}
+{% for post in posts %}
+    {% include "_post.html" %}
+{% endfor %}
+{% include "_pagination.html" %}
+
+{% endblock %}

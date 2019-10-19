@@ -1,3 +1,26 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Thomas Park
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -6780,6 +6803,9 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: rgba(0, 0, 0, 0.1); } }
+/*
+    This definitely came from somewhere, but I can't remember for the life of me where.
+*/
 .highlight {
   color: #111;
   background: #ffffff;
@@ -7028,6 +7054,29 @@ a.text-dark:hover, a.text-dark:focus {
 .highlighter-rouge {
   color: #2C3E50; }
 
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Thomas Park
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
 .navbar {
   font-size: 0.930125rem; }
   .navbar.bg-dark {
@@ -7166,5 +7215,59 @@ table,
 
 textarea.form-control:focus, input.form-control:focus {
   color: #212529; }
+
+@media (min-width: 768px) {
+  .post-result-outer {
+    border-radius: 30px 20px;
+    background: #97BAF6;
+    padding: 17px; } }
+
+@media (min-width: 768px) {
+  .post-result-inner {
+    border-radius: 10px 30px;
+    background: #fff;
+    padding: 10px; } }
+
+@media (min-width: 768px) {
+  .about-member-outer {
+    border-radius: 30px 20px;
+    background: #97BAF6;
+    padding: 17px; } }
+
+@media (min-width: 768px) {
+  .about-member-inner {
+    border-radius: 10px 30px;
+    background: #fff;
+    padding: 10px; } }
+
+@media (min-width: 768px) {
+  .about-member-name {
+    border-top-left-radius: .5rem !important;
+    border-top-right-radius: .5rem !important;
+    background: #4582EC;
+    color: #f8f9fa; } }
+
+.about-member-name-link, .about-member-name-link:hover {
+  text-decoration: none; }
+  @media (min-width: 768px) {
+    .about-member-name-link, .about-member-name-link:hover {
+      color: #f8f9fa; } }
+
+@media (min-width: 768px) {
+  .about-member-picture-bg {
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    background: #4582EC;
+    padding: 2px; } }
+
+.about-member-picture {
+  border-radius: 3rem;
+  width: 100%;
+  height: 100%; }
+
+@media (max-width: 768px) {
+  .about-profile-picture-buffer {
+    flex: 0 0 8.333333333%;
+    max-width: 8.333333333%; } }
 
 /*# sourceMappingURL=style.css.map */
