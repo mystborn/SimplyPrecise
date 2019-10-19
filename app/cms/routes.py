@@ -139,7 +139,6 @@ def edit_profile():
 
 def fill_post_from_form(post, form):
     post.title = form.title.data
-    print(form.body)
     post.markdown_body = form.body.data
     post.tags = Tag.validate_tags(form.tags.data)
     post.prepare_to_save()

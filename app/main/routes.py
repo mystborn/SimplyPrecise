@@ -73,6 +73,8 @@ def search():
     else:
         query = parse.unquote_plus(request.args.get('q', ''))
         tags = parse.unquote_plus(request.args.get('t', ''))
+        form.query.data = query
+        form.tags.data = tags
         tag_all = False
 
     if not query and not tags:
